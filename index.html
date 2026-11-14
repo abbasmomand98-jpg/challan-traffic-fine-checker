@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Challan — Traffic Fine Checker &amp; Payer (UX Concept)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">C</span> Challan</div>
+  <p class="tagline">See every fine. Pay it before it doubles. — Traffic fine checker &amp; payer for Pakistan</p>
+  <p class="sample-note">SAMPLE DATA — every fine, plate, challan, figure and person shown here is invented for this UX concept demo. No real fine, plate, challan, or person appears. Challan is an unofficial concept, not a traffic-police app: always check the challan and the plate before you pay anyone.</p>
+</header>
+
+<nav class="tabs" aria-label="Challan sections">
+  <button id="tab-board" class="tab-btn active" data-tab="board">Challan Board</button>
+  <button id="tab-pay" class="tab-btn" data-tab="pay">Pay a Fine</button>
+  <button id="tab-dispute" class="tab-btn" data-tab="dispute">Dispute</button>
+  <button id="tab-reminders" class="tab-btn" data-tab="reminders">Reminders</button>
+  <button id="tab-spotter" class="tab-btn" data-tab="spotter">Agent Spotter</button>
+</nav>
+
+<main>
+  <!-- Challan board -->
+  <section class="card" id="section-board">
+    <p class="eyebrow">CHALLAN BOARD</p>
+    <h2>See every fine. Pay it before it doubles.</h2>
+    <p class="hint">In Pakistan, e-challans are issued by traffic cameras — but the notice arrives late or never. Ahmed Raza, 34, from Lahore, found out about a Rs 2,000 overspeeding challan only when his licence renewal was blocked. Type a plate and see every fine before the due date.</p>
+    <div class="verify-row">
+      <label>Number plate
+        <input id="plate-input" type="text" value="LHR-4812">
+      </label>
+      <button id="lookup-btn">Look up challans</button>
+    </div>
+    <div class="verify-row">
+      <label>Show
+        <select id="filter-select">
+          <option value="all">All challans</option>
+          <option value="UNPAID">Unpaid only</option>
+          <option value="PAID">Paid only</option>
+        </select>
+      </label>
+    </div>
+    <div id="lookup-result"></div>
+    <div id="challan-list"></div>
+    <p id="challan-summary"></p>
+    <div id="totals-box"></div>
+    <div id="late-box"></div>
+  </section>
+
+  <!-- Pay a fine -->
+  <section class="card" id="section-pay" style="display:none">
+    <p class="eyebrow">PAY A FINE</p>
+    <h2>Rs 2,000 fine. Pay it in 2 minutes.</h2>
+    <p class="hint">Pick an unpaid challan and pay it online with JazzCash, Easypaisa or bank — no agent, no cash, no Rs 1,500 "clearing" fee. The official cost is just the fine. Payment mints a receipt you can show at the traffic office.</p>
+    <div class="verify-row">
+      <label>Challan
+        <select id="pay-select"></select>
+      </label>
+      <label>Pay with
+        <select id="pay-method">
+          <option value="JazzCash">JazzCash</option>
+          <option value="Easypaisa">Easypaisa</option>
+          <option value="Bank">Bank</option>
+        </select>
+      </label>
+      <button id="pay-btn">Pay this fine</button>
+    </div>
+    <div id="pay-detail"></div>
+    <div id="pay-result"></div>
+    <div id="receipt-box"></div>
+  </section>
+
+  <!-- Dispute -->
+  <section class="card" id="section-dispute" style="display:none">
+    <p class="eyebrow">DISPUTE</p>
+    <h2>Wrong plate? Dispute in one tap.</h2>
+    <p class="hint">Every challan carries a camera photo. If the photo plate does not match your plate, the camera caught the wrong car — dispute it instead of paying it. Sample case: challan CH-2026-902 shows a white Corolla, photo plate LHR-9902 — not Ahmed Raza's LHR-4812.</p>
+    <div class="verify-row">
+      <label>Photo plate on the challan
+        <input id="dispute-photo-plate" type="text" value="LHR-9902">
+      </label>
+      <label>Your plate
+        <input id="dispute-own-plate" type="text" value="LHR-4812">
+      </label>
+      <button id="dispute-check-btn">Check the photo plate</button>
+    </div>
+    <div id="dispute-result"></div>
+    <button id="dispute-submit-btn">Dispute this challan</button>
+    <div id="dispute-status"></div>
+  </section>
+
+  <!-- Reminders -->
+  <section class="card" id="section-reminders" style="display:none">
+    <p class="eyebrow">REMINDERS</p>
+    <h2>Never pay late again.</h2>
+    <p class="hint">Challan reminds you 3 days before each due date — CH-2026-310 is due 17 Nov 2026, so its reminder is 14 Nov 2026; CH-2026-4812 is due 26 Nov 2026, so its reminder is 23 Nov 2026. Fog season means more camera challans. Your reminders are saved on this device.</p>
+    <p id="reminders-progress"></p>
+    <ul id="reminders-list"></ul>
+    <div id="reminders-status"></div>
+  </section>
+
+  <!-- Agent spotter quiz -->
+  <section class="card" id="section-spotter" style="display:none">
+    <p class="eyebrow">AGENT SPOTTER</p>
+    <h2>Spot the agent overcharge.</h2>
+    <p class="hint">An agent outside the traffic office asked Rs 1,500 to "clear" a Rs 2,000 challan. The official cost is just the Rs 2,000 fine — the fee is pure overcharge. Three things an agent does that should stop you paying him — and one safe habit. Call each one a red flag or safe, then check your score.</p>
+    <div id="spotter-quiz"></div>
+    <button id="spotter-btn">Check my score</button>
+    <div id="spotter-result"></div>
+  </section>
+
+  <button id="reset-demo" class="secondary">Reset demo data</button>
+</main>
+
+<footer>
+  <p>Challan is an unofficial UX concept by Muhammad Abbas Khan — not a traffic-police app.</p>
+  <p>Available for new projects: abbasmomand98@gmail.com</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
